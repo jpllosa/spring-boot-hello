@@ -14,8 +14,13 @@ public class Main implements CommandLineRunner {
 	ApplicationContext context;
 
 	public static void main(String[] args) {
+		long startTime = System.currentTimeMillis();
 		SpringApplication.run(Main.class, args);
-
+		long endTime = System.currentTimeMillis();
+		System.out.println("time ms: " + (endTime - startTime)); //time ms: 915
+		Runtime.getRuntime().gc();
+		long memUsed = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+		System.out.println("memory used bytes: " + memUsed);
 	}
 
 	public void run(String... args) throws Exception {
